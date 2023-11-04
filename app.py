@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi_utils.tasks import repeat_every
 from telegram import Bot
-from main import RTVWatcher
+from main import RTVWatcher, iSpotWatcher
 from dotenv import load_dotenv
 import os
 
@@ -27,11 +27,13 @@ app = FastAPI(lifespan=lifespan)
 async def check_availability():
     websites = [
         RTVWatcher(
-            'https://www.euro.com.pl/telefony-komorkowe/apple-iphone-15-pro-256gb-silver.bhtml'
-        ),
+            'https://www.euro.com.pl/telefony-komorkowe/apple-iphone-15-pro-256gb-silver.bhtml'),
         RTVWatcher(
-            'https://www.euro.com.pl/telefony-komorkowe/apple-iphone-15-pro-256gb-gold.bhtml'
-        )
+            'https://www.euro.com.pl/telefony-komorkowe/apple-iphone-15-pro-256gb-gold.bhtml'),
+        iSpotWatcher(
+            'https://ispot.pl/apple-iphone-15-pro-256gb-white-titanium'),
+        iSpotWatcher(
+            'https://ispot.pl/apple-iphone-15-pro-256gb-natural-titanium'),
     ]
 
     results = []
