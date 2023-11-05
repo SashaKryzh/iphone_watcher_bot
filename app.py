@@ -55,4 +55,4 @@ async def check_availability():
     for result in results:
         message += f"{'✅' if result[0] else '❌'} {result[1].url}\n"
 
-    await bot.send_message(chat_id, message)
+    await bot.send_message(chat_id, message, disable_notification=not is_available)
