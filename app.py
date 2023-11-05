@@ -1,10 +1,12 @@
+import os
 from contextlib import asynccontextmanager
+
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi_utils.tasks import repeat_every
 from telegram import Bot
+
 from main import RTVWatcher, iSpotWatcher
-from dotenv import load_dotenv
-import os
 
 load_dotenv()
 bot_token = os.getenv('BOT_TOKEN')
@@ -49,7 +51,7 @@ async def check_availability():
 
     is_available = any(result[0] for result in results)
 
-    message = f"{'AVAILABLE' if is_available else 'NOT AVAILABLE'}\n\n"
+    message = f"{'✅ AVAILABLE' if is_available else '❌ NOT AVAILABLE'}\n\n"
     for result in results:
         message += f"{'✅' if result[0] else '❌'} {result[1].url}\n"
 
