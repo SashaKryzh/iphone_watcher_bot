@@ -24,7 +24,6 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-@app.get('/')
 @repeat_every(seconds=60*30)  # 30 minutes
 async def check_availability():
     websites = [

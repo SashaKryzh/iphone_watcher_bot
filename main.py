@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 
 
 class Watcher(ABC):
+    def __init__(self, url: str):
+        self.url = url
+
     @abstractmethod
     def is_available(self):
         pass
@@ -11,7 +14,7 @@ class Watcher(ABC):
 
 class RTVWatcher(Watcher):
     def __init__(self, url: str):
-        self.url = url
+        super().__init__(url)
 
     def is_available(self) -> bool:
         try:
@@ -37,7 +40,7 @@ class RTVWatcher(Watcher):
 
 class iSpotWatcher(Watcher):
     def __init__(self, url: str):
-        self.url = url
+        super().__init__(url)
 
     def is_available(self) -> bool:
         try:
