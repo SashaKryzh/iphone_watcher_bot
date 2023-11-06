@@ -12,7 +12,7 @@ load_dotenv()
 bot_token = os.getenv('BOT_TOKEN')
 
 bot = Bot(token=bot_token)
-chat_id = '386062027'
+chat_id = '386062027' # You should first send a message to your bot and record your chat_id
 
 
 @asynccontextmanager
