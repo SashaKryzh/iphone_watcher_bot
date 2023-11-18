@@ -48,10 +48,12 @@ async def check_availability():
         except Exception as e:
             await bot.send_message(chat_id, f'Error checking availability on {website.url}')
 
-    is_available = any(result[0] for result in results)
+    is_available = any(result[0] for result in results[:2])
 
     message = f"{'✅ AVAILABLE' if is_available else '❌ NOT AVAILABLE'}\n\n"
-    for result in results:
+    for index, result in enumerate(results):
+        if index == 2:
+            message += '\n---\n\n'
         message += f"{'✅' if result[0] else '❌'} {result[1].url}\n"
 
     await bot.send_message(chat_id, message, disable_notification=not is_available)
